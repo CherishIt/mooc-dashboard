@@ -1,0 +1,14 @@
+<div>
+  <strong>Comments' Network Evolution</strong>
+  <br>
+  Step:
+  <select ng-model="step" ng-change="selectData()">
+    <option ng-repeat="option in steps" value="{{option}}">{{option}}</option>
+  </select>
+  <br>
+  Connected Comments: {{linkedNum}}
+  <br>
+  Unconnected Comments: {{unlinkedNum}}
+  <div id="chart_div" style="width: 600px;height:400px;">
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>MOOC Viz</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <!--script src="bower_components/crossfilter/crossfilter.min.js"></script-->
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.1/echarts.min.js
+"></script>
+
+</head>
+<body>
+  <ul class="menu">
+    <li><a href="#!/enrolment">Enrolment</a></li>
+    <li><a href="#!/step_activity">Step Activities</a></li>
+    <li><a href="#!/comments">Comments</a></li>
+    <li><a href="#!/comment_network">Comments' Network</a></li>
+    <li><a href="#!/learner_network">Learners' Network</a></li>
+  </ul>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div ng-view></div>
+
+  <!--div>Angular seed app: v<span app-version></span></div-->
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
+  <script src="app.js"></script>
+  <script src="enrolment/enrolment.module.js"></script>
+  <script src="enrolment/enrolment.config.js"></script>
+  <script src="enrolment/enrolment.component.js"></script>
+  <script src="step_activity/step_activity.module.js"></script>
+  <script src="step_activity/step_activity.config.js"></script>
+  <script src="step_activity/step_activity.component.js"></script>
+  <script src="comment/comment.module.js"></script>
+  <script src="comment/comment.config.js"></script>
+  <script src="comment/components/comment_and_reply_bar.component.js"></script>
+  <script src="comment/reply_proportion/reply_proportion.component.js"></script>
+  <script src="social_network/social_network.module.js"></script>
+  <script src="social_network/social_network.config.js"></script>
+  <script src="social_network/comment_graph/comment_graph.component.js"></script>
+  <script src="social_network/learner_graph/learner_graph.component.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>
