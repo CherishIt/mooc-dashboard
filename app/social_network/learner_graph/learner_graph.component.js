@@ -7,22 +7,13 @@ angular.
     controller: function commentNetworkController($http, $scope) {
       //var self = this;
 
-
-
-
+      //default chart replacement
       var chart = echarts.init(document.getElementById('chart'));
 
       var option = {
-        title: [{
-          text: 'Learners\' Network',
-          left: 'center'
-        }],
         tooltip: {},
-        legend: {
-          data:['comment', 'reply']
-        },
         series: [{
-          name: 'Likes',
+          name: 'Replies Got',
           type: 'graph',
           layout: 'force',
           roam: true,
@@ -35,7 +26,11 @@ angular.
             {name:"f",category:1,value:3}
           ],
           links: [{source:'h',target:'f'}],
-          categories: ['comment','reply'],
+          categories: [{
+            name: 'Top ' + $scope.top + ' Learners'
+          }, {
+            name: 'Other Learners'
+          }],
           zlevel: 2
           /*,
           force: {
@@ -44,76 +39,137 @@ angular.
         }]
       };
       chart.setOption(option);
+      //chart.showLoading();
 
-      chart.showLoading();
+      // Init
       var results = [];
-      var data = [];
-      var weeks = [];
-      $scope.steps = [];
-      $scope.step = "1.1";
-      $scope.num = 0;
-      $scope.stepNum = 0;
-      $scope.unlinkedNum = 0;
-      $scope.linkedNum = 0;
+      $scope.top = 10;
 
-      $http.get('http://localhost:3000/comment/learner_network').then(function(response) {
+      //$scope.unlinkedNum = 0;
+      //$scope.linkedNum = 0;
 
-        results = response.data;
-        var nodes = []
-        results.nodes.forEach(function(n){
-          //if (nodes.length< 1000)
-          var size = n.count===0 ? 3 : 3 + n.count * 0.2;
-          nodes.push({name:n.target, symbolSize: size});
-        })
-        var links = []
-        results.links.forEach(function(n){
-          //if (links.length< 1500)
-            links.push(n);
-        })
-
-        /*var ele = [];
-        results.nodes.forEach(function(n){
-          ele.push({data:{id:n}});
-        })
-        results.links.forEach(function(l){
-          ele.push({data:{source:l.source, target:l.target}})
-        })
-
-        var cy = cytoscape({
-          container: document.getElementById('cy'),
-          elements:ele,
-          style: [{
-            selector: 'node',
-            style: {
-              shape: 'hexagon',
-              'background-color': 'red'
-            }
-          }],
-          layout: {
-            name: 'cose'
-          }
-        })*/
-        
-        chart.setOption({
-          series: [{
-            name: 'Learner',
-            type: 'graph',
-            layout: 'force',
-            roam: true,
-            nodes: nodes,
-            links: links,
+      $scope.draw = function(){
+        chart.showLoading();
+        $http.get('http://localhost:3000/comment/learner_network?top=' + $scope.top).then(function(response) {
+          
+          results = response.data;
+          var nodes = []
+          var count = 0;
+          results.nodes.forEach(function(n){
+            //if (nodes.length< 1000)
+            var size = n.count===0 ? 3 : 3 + n.count * 0.2;
+            nodes.push({name:n.target, symbolSize: size, category: count<$scope.top ? 0 : 1, value: n.count});
+            count ++;
+          })
+          var links = []
+          results.links.forEach(function(n){
+            //if (links.length< 1500)
+              links.push(n);
+          })
+          
+          chart.setOption({
+            legend: {
+              selectMode: 'multiple',
+              data:['Top '+ $scope.top +' Learners', 'Other Learners']
+            },
             tooltip: {
               formatter: '<strong>{b}</strong> <br> {a} : {c}'
             },
-            focusNodeAdjacency: true,
-            draggable: true
-          }]
-        })
+            series: [{
+              name: 'Replies Got',
+              type: 'graph',
+              layout: 'force',
+              roam: true,
+              nodes: nodes,
+              links: links,
+              categories: [{
+                name: 'Top ' + $scope.top + ' Learners'
+              }, {
+                name: 'Other Learners'
+              }],
+              focusNodeAdjacency: true,
+              draggable: true
+            }]
+          })
+  
+          chart.hideLoading();
+          
+        });
+      };
 
-        chart.hideLoading();
-        //console.log($scope.steps)
-        
+      $scope.draw();
+
+
+$http.get('http://localhost:3000/comment/learner_network/metrics').then(function(response) {
+
+      var d = []
+      response.data.forEach(function(n){
+        var t = new Date(n.date)
+        d.push({
+          name: t.toString(),
+          value: [[t.getFullYear(), t.getMonth() + 1, t.getDate()].join('/'), n.density]
+        })
       });
+      ///// for density
+      var d_chart = echarts.init(document.getElementById('density'));
+      var d_options = {
+        title: {
+            text: 'Network Density of Social Learners'
+        },
+        toolbox: {
+        feature: {
+            restore: {
+              title: 'restore zoom'
+            },
+            saveAsImage: {
+              title: 'save as image'
+            }
+          }
+        },
+        tooltip: {
+            trigger: 'axis',
+            formatter: function (params) {
+                params = params[0];
+                var date = new Date(params.name);
+                return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+            },
+            axisPointer: {
+                animation: false
+            }
+        },
+        xAxis: {
+            type: 'time',
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            type: 'value',
+            //boundaryGap: [0, '100%'],
+            splitLine: {
+                show: false
+            }
+        },
+        dataZoom: [
+        {
+            show: true,
+            realtime: true,
+            start: 0,
+            end: 100
+            //xAxisIndex: [0, 1]
+        }
+    ],
+        series: [{
+            name: 'density',
+            type: 'line',
+            showSymbol: false,
+            hoverAnimation: false,
+            data: d
+        }]
+      };
+      d_chart.setOption(d_options);
+    });
+
 
     }
   });

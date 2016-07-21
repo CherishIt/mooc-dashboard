@@ -16,9 +16,6 @@ angular.
           left: 'center'
         }],
         tooltip: {},
-        legend: {
-          data:['comment', 'reply']
-        },
         series: [{
           name: 'Likes',
           type: 'graph',
@@ -33,7 +30,6 @@ angular.
             {name:"f",category:1,value:3}
           ],
           links: [{source:'h',target:'f'}],
-          categories: ['comment','reply'],
           zlevel: 2
           /*,
           force: {
@@ -147,6 +143,12 @@ angular.
             tooltip: {
               formatter: '<strong>{b}</strong> <br> {a} : {c}'
             },
+            legend: {
+              data:['comment', 'reply'],
+              left: 'left',
+              top: 20,
+              orient: 'vertical'
+            },
             toolbox: {
               show: true,
               feature: {
@@ -163,7 +165,9 @@ angular.
               name: 'likes',
               type: 'graph',
               layout: 'force',
-              draggable: 'true'
+              draggable: 'true',
+              categories: [{name:'comment'},{name:'reply'}],
+              focusNodeAdjacency: true
             }]
           },
           options: options/*

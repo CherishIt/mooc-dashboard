@@ -1,6 +1,14 @@
 <div>
   <strong>Learners' Network</strong>
-  <div id="chart" style="width: 600px;height:400px;">
+  <br>
+  View Network of top 
+  <input type="number" ng-model="top" min="1" max="500">
+  most connected learners.
+  <input type="submit" value="Redraw" ng-click="draw()">
+  <br>
+  <div id="chart" style="width: 900px;height:600px;">
   </div>
   <!--div id="cy" style="width: 600px;height:400px;"></div-->
+  <div id="density" style="width:600px; height:400px">
+  </div>
 </div>

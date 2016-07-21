@@ -42,7 +42,9 @@ angular.
           //radius: '60%',
           label: {
             normal:{
-              show: false
+              position: 'outside',
+              show: true,
+              formatter: '{b}:{c}({d}%)'
             }
           },
           data: [
