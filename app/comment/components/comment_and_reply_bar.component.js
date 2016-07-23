@@ -27,12 +27,12 @@ angular.
             data.addRow([r1[i]._id.toString(), r1[i].comments, r2[i].replies]);
           }
 
-          console.log(data);
+          //console.log(data);
 
           var options = {
             title: "Comments and Replies by Step",
             width: 600,
-            height: 400,
+            height: 500,
             hAxis: {
               gridlines: {count: 15}
             },

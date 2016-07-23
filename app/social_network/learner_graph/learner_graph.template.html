@@ -6,9 +6,12 @@
   most connected learners.
   <input type="submit" value="Redraw" ng-click="draw()">
   <br>
+  Learners: {{metrics.nodes}}  Links:{{metrics.links}}  Density: {{metrics.density}}
   <div id="chart" style="width: 900px;height:600px;">
   </div>
   <!--div id="cy" style="width: 600px;height:400px;"></div-->
   <div id="density" style="width:600px; height:400px">
+  </div>
+  <div id="distribution" style="width:600px; height:400px">
   </div>
 </div>

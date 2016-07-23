@@ -8,16 +8,30 @@ angular.
       //var self = this;
 
       var chart = echarts.init(document.getElementById('chart'));
+      var dist = echarts.init(document.getElementById('dist'));
 
       var option = {
+        xAxis: {
+          type: 'value',
+          name: 'Replies'
+        },
+        yAxis: {
+          type: 'value',
+          name: 'Comments'
+        },
+        grid:{
+          top:50,
+          right: 100
+        },
         title: [{
           //text: 'Number of Comments by Number of Replies',
           left: 'center'
         }],
-        tooltip: {
-          formatter: '{b} <br> Comments Number : {c} ({d}%)',
-          position: 'inside'
-        },
+        tooltip: [{
+          formatter: '{b} <br> Comments Number : {c}',
+          position: 'inside',
+          //show: false
+        }],
         toolbox: {
           show: true,
           feature: {
@@ -30,16 +44,26 @@ angular.
             }
           }
         },
+        dataZoom: [{},
+        {
+            show: true,
+            realtime: true,
+            start: 0,
+            end: 100
+            //xAxisIndex: [0, 1]
+        }
+    ],
         legend: {
-          //left: 'right',
-          top: 'bottom',
-          //orient: 'vertical',
+          left: 'right',
+          top: 50,
+          orient: 'vertical',
           data: ['0 reply','1 reply','2 replies','3 replies','4 replies','5 replies','6-10 replies','>10 replies']
         },
         series: [{
           name: 'Number of Replies',
           type: 'pie',
-          //radius: '60%',
+          radius: '40%',
+          center: ['60%', '40%'],
           label: {
             normal:{
               position: 'outside',
@@ -82,11 +106,22 @@ angular.
         data.push(mergeReply(results,6,10,'6-10 replies'));
         data.push(mergeReply(results,11,null, '>10 replies'));
 
+        var d2 = [];
+        d2.push([0,zero.count]);
+        results.forEach(function(n){
+          d2.push([n.count,n.number])
+        });
+
         chart.setOption({
           series: [{
             name: 'Number of Replies',
             type: 'pie',
             data: data
+          },{
+            name: 'Number of Replies',
+            type: 'line',
+            //radius: '60%',
+            data: d2
           }]
         })
 
@@ -101,6 +136,44 @@ angular.
             entry.value += d.number;
         })
         return entry;
+      }
+
+      function drawDist(data){
+        var d_option = {
+          xAxis: {
+            type: 'value',
+            name: 'Replies'
+          },
+          yAxis: {
+            type: 'value',
+            name: 'Comments'
+          },
+          tooltip: {
+
+          },
+          toolbox: {
+            show: true,
+            feature: {
+              dataView: {
+                title: "Data View",
+                readOnly: true
+              },
+              saveAsImage: {
+                title: "Save as Image"
+              }
+            }
+          },
+          legend: {
+            //left: 'right',
+          },
+          series: [{
+            name: 'Number of Replies',
+            type: 'line',
+            //radius: '60%',
+            data: data
+          }]
+        };
+        dist.setOption(d_option);
       }
 
     }

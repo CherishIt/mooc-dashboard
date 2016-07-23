@@ -45,6 +45,9 @@ angular.
       var results = [];
       $scope.top = 10;
 
+      $scope.getMetrics = function(){
+      };
+
       //$scope.unlinkedNum = 0;
       //$scope.linkedNum = 0;
 
@@ -52,7 +55,17 @@ angular.
         chart.showLoading();
         $http.get('http://localhost:3000/comment/learner_network?top=' + $scope.top).then(function(response) {
           
+
           results = response.data;
+          var nodes = results.nodes.length;
+          var links = results.links.length;
+          var density = links / (nodes * (nodes-1)/2);
+          $scope.metrics =  {
+            nodes: nodes,
+            links: links,
+            density: density
+          }
+
           var nodes = []
           var count = 0;
           results.nodes.forEach(function(n){
@@ -103,7 +116,7 @@ angular.
 $http.get('http://localhost:3000/comment/learner_network/metrics').then(function(response) {
 
       var d = []
-      response.data.forEach(function(n){
+      response.data.density.forEach(function(n){
         var t = new Date(n.date)
         d.push({
           name: t.toString(),
@@ -168,6 +181,60 @@ $http.get('http://localhost:3000/comment/learner_network/metrics').then(function
         }]
       };
       d_chart.setOption(d_options);
+
+      //for distribution
+  var dist = echarts.init(document.getElementById('distribution'));
+  var dist_option = {
+          title: {
+            text: 'Learners Distribution by Connections'
+          },
+          xAxis: {
+            type: 'value',
+            name: 'Connections'
+          },
+          yAxis: {
+            type: 'value',
+            name: 'Learners'
+          },
+          grid:{
+            right:100
+          },
+          tooltip: {
+
+          },
+          toolbox: {
+            show: true,
+            feature: {
+              dataView: {
+                title: "Data View",
+                readOnly: true
+              },
+              saveAsImage: {
+                title: "Save as Image"
+              }
+            }
+          },
+          dataZoom: [
+        {
+            show: true,
+            realtime: true,
+            start: 0,
+            end: 100
+            //xAxisIndex: [0, 1]
+        }
+    ],
+          legend: {
+            //left: 'right',
+          },
+          series: [{
+            name: 'Number of Learners',
+            type: 'line',
+            //radius: '60%',
+            data: response.data.distribution
+          }]
+        };
+        dist.setOption(dist_option);
+
     });
 
 
