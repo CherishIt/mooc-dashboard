@@ -2,61 +2,307 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js" ng-controller="RouteController"> <!--<![endif]-->
 <head>
+  <!-- Meta, title, CSS, favicons, etc. -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>MOOC Viz</title>
-  <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="app.css">
+
+  <!--link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css"-->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+  <!--link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css"-->
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <!--link rel="stylesheet" href="app.css"-->
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  <!--script src="bower_components/crossfilter/crossfilter.min.js"></script-->
+
   <script src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.1/echarts.min.js
-"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.2.1/echarts.min.js"></script>
 
 </head>
-<body>
-  <ul class="menu">
+<body class='nav-md'>
+  <div class="container body">
+    <div class="main_container">
+  <!--ul class="menu">
     <li><a href="#!/enrolment">Enrolment</a></li>
     <li><a href="#!/step_activity">Step Activities</a></li>
     <li><a href="#!/comments">Comments</a></li>
     <li><a href="#!/comment_network">Comments' Network</a></li>
     <li><a href="#!/learner_network">Learners' Network</a></li>
-  </ul>
+  </ul-->
 
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+  <!--side nav-->
+  <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>MOOC Dashboard</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info ->
+            <div class="profile">
+              <div class="profile_pic">
+                <img src="assets/images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>John Doe</h2>
+              </div>
+            </div>
+            <!- /menu profile quick info -->
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <!--h3>General</h3-->
+                <ul class="nav side-menu">
+                  <li><a href="#!/courses"><i class="fa fa-home"></i> Home</a>
+                    <!--ul class="nav child_menu">
+                      <li><a href="index.html">Dashboard</a></li>
+                      <li><a href="index2.html">Dashboard2</a></li>
+                      <li><a href="index3.html">Dashboard3</a></li>
+                    </ul-->
+                  </li>
+                  <li ng-if="course_code"><a><i class="fa fa-edit"></i> CourseInfo</a>
+                    <!--ul class="nav child_menu">
+                      <li><a href="form.html">General Form</a></li>
+                      <li><a href="form_advanced.html">Advanced Components</a></li>
+                      <li><a href="form_validation.html">Form Validation</a></li>
+                      <li><a href="form_wizards.html">Form Wizard</a></li>
+                      <li><a href="form_upload.html">Form Upload</a></li>
+                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                    </ul-->
+                  </li>
+                  <li ng-if="run"><a><i class="fa fa-desktop"></i> Basics <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/enrolment">Enrolment</a></li>
+                      <li><a href="#!/step_activity">Step Activities</a></li>
+                    </ul>
+                  </li>
+                  <li ng-if="course_code"><a><i class="fa fa-table"></i> Comments <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#!/comments">Comments</a></li>
+                    </ul>
+                  </li>
+                  <li ng-if="course_code"><a><i class="fa fa-bar-chart-o"></i> Network <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#!/comment_network">Comments' Network</a></li>
+                      <li><a href="#!/learner_network">Learners' Network</a></li>
+                    </ul>
+                  </li>
+                  <!--li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
+                      <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                    </ul>
+                  </li-->
+                </ul>
+              </div>
+              <!--div class="menu_section">
+                <h3>Live On</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="e_commerce.html">E-commerce</a></li>
+                      <li><a href="projects.html">Projects</a></li>
+                      <li><a href="project_detail.html">Project Detail</a></li>
+                      <li><a href="contacts.html">Contacts</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="page_403.html">403 Error</a></li>
+                      <li><a href="page_404.html">404 Error</a></li>
+                      <li><a href="page_500.html">500 Error</a></li>
+                      <li><a href="plain_page.html">Plain Page</a></li>
+                      <li><a href="login.html">Login Page</a></li>
+                      <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="#level1_1">Level One</a>
+                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li class="sub_menu"><a href="level2.html">Level Two</a>
+                            </li>
+                            <li><a href="#level2_1">Level Two</a>
+                            </li>
+                            <li><a href="#level2_2">Level Two</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#level1_2">Level One</a>
+                        </li>
+                    </ul>
+                  </li>                  
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                </ul>
+              </div-->
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <!--div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+        <!--side nav-->
+
+  <!-- top navigation -->
+  <div class="top_nav">
+    <div class="nav_menu">
+      <nav class="" role="navigation">
+        <div class="nav toggle">
+          <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+
+        <!--ul class="nav navbar-nav navbar-right">
+          <li class="">
+            <!--a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <img src="assets/images/img.jpg" alt="">John Doe
+              <span class=" fa fa-angle-down"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-usermenu pull-right">
+              <li><a href="javascript:;"> Profile</a></li>
+              <li>
+                <a href="javascript:;">
+                  <span class="badge bg-red pull-right">50%</span>
+                  <span>Settings</span>
+                </a>
+              </li>
+              <li><a href="javascript:;">Help</a></li>
+              <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            </ul-->
+          </li>
+
+          <!--li role="presentation" class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-envelope-o"></i>
+              <span class="badge bg-green">6</span>
+            </a>
+            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+              <li>
+                <a>
+                  <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a>
+                  <span class="image"><img src="assets/images/img.jpg" alt="Profile Image" /></span>
+                  <span>
+                    <span>John Smith</span>
+                    <span class="time">3 mins ago</span>
+                  </span>
+                  <span class="message">
+                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                  </span>
+                </a>
+              </li>
+              <li>
+                <div class="text-center">
+                  <a>
+                    <strong>See All Alerts</strong>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul-->
+      </nav>
+    </div>
+  </div>
+  <!-- /top navigation -->
+
+  <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="row tile_count">
+            <br><br>
 
   <div ng-view></div>
-
-  <!--div>Angular seed app: v<span app-version></span></div-->
+</div>
+    </div>
+  </div>
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="assets/js/custom.js"></script>
   <script src="app.js"></script>
-  <script src="enrolment/enrolment.module.js"></script>
-  <script src="enrolment/enrolment.config.js"></script>
-  <script src="enrolment/enrolment.component.js"></script>
-  <script src="step_activity/step_activity.module.js"></script>
-  <script src="step_activity/step_activity.config.js"></script>
-  <script src="step_activity/step_activity.component.js"></script>
-  <script src="comment/comment.module.js"></script>
-  <script src="comment/comment.config.js"></script>
-  <script src="comment/components/comment_and_reply_bar.component.js"></script>
-  <script src="comment/reply_proportion/reply_proportion.component.js"></script>
-  <script src="social_network/social_network.module.js"></script>
-  <script src="social_network/social_network.config.js"></script>
-  <script src="social_network/comment_graph/comment_graph.component.js"></script>
-  <script src="social_network/learner_graph/learner_graph.component.js"></script>
+  <script src="components/courses/courses.module.js"></script>
+  <script src="components/courses/courses.config.js"></script>
+  <script src="components/courses/courses.component.js"></script>
+  <script src="components/enrolment/enrolment.module.js"></script>
+  <script src="components/enrolment/enrolment.config.js"></script>
+  <script src="components/enrolment/enrolment.component.js"></script>
+  <script src="components/step_activity/step_activity.module.js"></script>
+  <script src="components/step_activity/step_activity.config.js"></script>
+  <script src="components/step_activity/step_activity.component.js"></script>
+  <script src="components/comment/comment.module.js"></script>
+  <script src="components/comment/comment.config.js"></script>
+  <script src="components/comment/components/comment_and_reply_bar.component.js"></script>
+  <script src="components/comment/reply_proportion/reply_proportion.component.js"></script>
+  <script src="components/social_network/social_network.module.js"></script>
+  <script src="components/social_network/social_network.config.js"></script>
+  <script src="components/social_network/comment_graph/comment_graph.component.js"></script>
+  <script src="components/social_network/learner_graph/learner_graph.component.js"></script>
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>

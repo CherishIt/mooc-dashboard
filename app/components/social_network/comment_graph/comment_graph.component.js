@@ -52,7 +52,7 @@ angular.
 
 
       //http get data source
-      $http.get('http://localhost:3000/comment/comment_network').then(function(response) {
+      $http.get('http://localhost:3000/courses/UL/1/comment/comment_network').then(function(response) {
 
         results = response.data;
         results.forEach(function(n){
@@ -188,12 +188,12 @@ angular.
       //prepare Labels shown on Echarts Timeline
       function timelineData() {
         var array = [];
-        var date = new Date(results[0].values[0].timestamp);
+        var date = results[0] ? new Date(results[0].values[0].timestamp): new Date();
         for (var i = 0; i < 7; i++) {
           array.push({value:date, tooltip:{showContent: false}});
           date = new Date(date.getTime() + 86400000);
         }
-        for (var i = 2; i < weeks.length; i++) {
+        for (var i = 2; i < weeks.length-1; i++) {
           var date = new Date(results[i].values[0].timestamp);
 
           array.push({value:date, tooltip:{showContent: false}});

@@ -3,14 +3,14 @@
 angular.
   module('enrolment').
   component('timeLine', {
-    templateUrl: 'enrolment/enrolment.template.html',
+    templateUrl: 'components/enrolment/enrolment.template.html',
     controller: function enrolmentController($http) {
       var self = this;
       //google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart(){
-        $http.get('http://localhost:3000/enrolment').then(function(response) {
+        $http.get('http://localhost:3000/courses/UL/1/enrolment').then(function(response) {
           //self.enrolmentData = response.data;
           //google.charts.load('current', {'packages':['corechart']});
           var data = new google.visualization.DataTable();
@@ -38,8 +38,6 @@ angular.
 
           var options = {
             title: "Enrolment and Unenrolment with Time",
-            width: 900,
-            height: 500,
             series: {
               0: {targetAxisIndex: 0},
               1: {targetAxisIndex: 1}

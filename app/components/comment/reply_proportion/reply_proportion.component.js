@@ -3,7 +3,7 @@
 angular.
   module('comment').
   component('replyProportionPie', {
-    templateUrl: 'comment/reply_proportion/reply_proportion.template.html',
+    templateUrl: 'components/comment/reply_proportion/reply_proportion.template.html',
     controller: function commentNetworkController($http, $scope) {
       //var self = this;
 
@@ -97,21 +97,23 @@ angular.
         var legendRange = [1,2,3,4,5,10];
         var data = [];
         var zero = results.pop();
-        data.push({name:'0 reply', value:zero.count});
-        data.push(mergeReply(results,1,1,'1 reply'));
-        data.push(mergeReply(results,2,2,'2 replies'));
-        data.push(mergeReply(results,3,3,'3 replies'));
-        data.push(mergeReply(results,4,4,'4 replies'));
-        data.push(mergeReply(results,5,5,'5 replies'));
-        data.push(mergeReply(results,6,10,'6-10 replies'));
-        data.push(mergeReply(results,11,null, '>10 replies'));
-
         var d2 = [];
-        d2.push([0,zero.count]);
-        results.forEach(function(n){
-          d2.push([n.count,n.number])
-        });
+        if (zero) {
+          data.push({name:'0 reply', value:zero.count});
+          data.push(mergeReply(results,1,1,'1 reply'));
+          data.push(mergeReply(results,2,2,'2 replies'));
+          data.push(mergeReply(results,3,3,'3 replies'));
+          data.push(mergeReply(results,4,4,'4 replies'));
+          data.push(mergeReply(results,5,5,'5 replies'));
+          data.push(mergeReply(results,6,10,'6-10 replies'));
+          data.push(mergeReply(results,11,null, '>10 replies'));
 
+          d2.push([0,zero.count]);
+          results.forEach(function(n){
+            d2.push([n.count,n.number])
+          });
+        }
+        
         chart.setOption({
           series: [{
             name: 'Number of Replies',

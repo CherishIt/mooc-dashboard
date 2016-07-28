@@ -113,7 +113,7 @@ angular.
       $scope.draw();
 
 
-$http.get('http://localhost:3000/comment/learner_network/metrics').then(function(response) {
+/*$http.get('http://localhost:3000/comment/learner_network/metrics').then(function(response) {
 
       var d = []
       response.data.density.forEach(function(n){
@@ -237,6 +237,6 @@ $http.get('http://localhost:3000/comment/learner_network/metrics').then(function
 
     });
 
-
+*/
     }
   });
