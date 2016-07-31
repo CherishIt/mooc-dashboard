@@ -11,13 +11,25 @@ angular.module('myApp', [
   'courses',
   'ui.bootstrap'
 ])
-.controller('RouteController', function($scope, $routeParams){
-
-  $scope.course_code = $routeParams.course_code;
-  $scope.run = 1;
-})
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
   google.charts.load('current', {'packages':['corechart', 'controls']});
   //$routeProvider.otherwise({redirectTo: '/enrolment'});
-}]);
+}])
+.controller('RouteController', function($scope, $route, $routeParams){
+  $scope.$on('$routeChangeSuccess', function() {
+    // $routeParams should be populated here
+    if (!$scope.course_code) {
+    //  return;
+    console.log($routeParams)
+    $scope.course_code = $routeParams.course_code;
+    $scope.run = $routeParams.run;
+    console.log($scope.course_code);
+    console.log($scope.run);
+    } else {
+      console.log($scope.course_code);
+      console.log($scope.run);
+    }
+  });
+  
+});

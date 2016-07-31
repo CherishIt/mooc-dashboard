@@ -80,18 +80,18 @@
                   <li ng-if="run"><a><i class="fa fa-desktop"></i> Basics <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/enrolment">Enrolment</a></li>
-                      <li><a href="#!/step_activity">Step Activities</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/step_activity">Step Activities</a></li>
                     </ul>
                   </li>
-                  <li ng-if="course_code"><a><i class="fa fa-table"></i> Comments <span class="fa fa-chevron-down"></span></a>
+                  <li ng-if="course_code"><a><i class="fa fa-table"></i> Comment <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#!/comments">Comments</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/comment">Comment</a></li>
                     </ul>
                   </li>
                   <li ng-if="course_code"><a><i class="fa fa-bar-chart-o"></i> Network <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#!/comment_network">Comments' Network</a></li>
-                      <li><a href="#!/learner_network">Learners' Network</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/comment_network">Comments' Network</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/learner_network">Learners' Network</a></li>
                     </ul>
                   </li>
                   <!--li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
@@ -282,7 +282,8 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="assets/js/custom.js"></script>
   <script src="app.js"></script>
@@ -297,7 +298,7 @@
   <script src="components/step_activity/step_activity.component.js"></script>
   <script src="components/comment/comment.module.js"></script>
   <script src="components/comment/comment.config.js"></script>
-  <script src="components/comment/components/comment_and_reply_bar.component.js"></script>
+  <script src="components/comment/comment_by_step/comment_by_step.component.js"></script>
   <script src="components/comment/reply_proportion/reply_proportion.component.js"></script>
   <script src="components/social_network/social_network.module.js"></script>
   <script src="components/social_network/social_network.config.js"></script>

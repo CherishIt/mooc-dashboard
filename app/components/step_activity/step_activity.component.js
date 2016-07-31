@@ -3,16 +3,85 @@
 angular.
   module('stepActivity').
   component('stepActivity', {
-    templateUrl: 'step_activity/step_activity.template.html',
-    controller: function stepStartedController($http) {
-      //var self = this;
-      google.charts.setOnLoadCallback(drawChart);
+    templateUrl: 'components/step_activity/step_activity.template.html',
+    controller: function stepStartedController($http, $scope, $routeParams) {
+      var ctrl = this;
+      //google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart(){
-        $http.get('http://localhost:3000/step_activity').then(function(response) {
+      //function drawChart(){
+        $http.get('http://localhost:3000/courses/' + $routeParams.course_code + '/run/' + $routeParams.run + '/step_activity').then(function(response) {
           //self.enrolmentData = response.data;
-          
-          var data = new google.visualization.DataTable();
+          console.log('http://localhost:3000/courses/' + ctrl.course_code + '/run/' + ctrl.run + '/step_activity')
+          var data = response.data;
+
+          var chart_step_activity = echarts.init(document.getElementById('step_activity'));
+
+          var option = {
+            tooltip :{
+              trigger : 'axis'
+            },
+            legend : {
+              data : ['Started', 'Completed', 'Completion Rate']
+            },
+            toolbox :{
+              //show : true,
+              feature : {
+                dataView: {
+                  title: "Data View",
+                  readOnly: true
+                },
+                saveAsImage: {
+                  title: "Save as Image"
+                }
+              }
+            },
+            dataZoom:{
+              show: true,
+              realtime: true,
+              start: 0,
+              end: 100
+              //xAxisIndex: [0, 1]
+            },
+            xAxis : {
+              name: 'Step',
+              nameLocation: 'middle',
+              nameGap: 25,
+              type: 'category',
+              data: data.map(function(e){return e._id})
+            },
+            yAxis : [{
+              name: 'Number',
+              type: 'value'
+            },{
+              name: 'Completion Rate',
+              type: 'value',
+              axisLabel: {
+                formatter: '{value}%'
+              }
+            }],
+            series : [{
+              name : 'Started',
+              type : 'bar',
+              //step : 'middle',
+              data : data.map(function(e){return e.started})
+            },{
+              name : 'Completed',
+              type : 'bar',
+              //step : 'middle',
+              data : data.map(function(e){return e.completed})
+            },{
+              name : 'Completion Rate',
+              type : 'line',
+              yAxisIndex : 1,
+              data : data.map(function(e){return e.completed/e.started})
+            }]
+          };
+
+          chart_step_activity.setOption(option);
+
+
+
+          /*var data = new google.visualization.DataTable();
           data.addColumn('string', 'Step');
           data.addColumn('number', 'Started');
           data.addColumn('number', 'Completed');
@@ -45,10 +114,10 @@ angular.
           };
 
           var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
-          chart.draw(data, options);
+          chart.draw(data, options);*/
 
         });
-      }
+      //}
       
     }
   });

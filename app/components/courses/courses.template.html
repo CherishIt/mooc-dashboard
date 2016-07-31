@@ -1,22 +1,32 @@
-
-<div class="x_panel tile">
+<div class="x_panel">
   <div class="x_title">
-    <h2>Choose a Courses</h2>
-    <ul class="nav navbar-right panel_toolbox">
-      <!--li uib-dropdown>
-        <a href="#" class="dropdown-toggle" uib-dropdown-toggle role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-        <ul uib-dropdown-menu role="menu">
-          <li><a>Settings 1</a>
-          </li>
-          <li><a>Settings 2</a>
-          </li>
-        </ul>
-      </li-->
-    </ul>
+    <h2><i class="fa fa-align-left"></i> Select A Course</h2>
     <div class="clearfix"></div>
   </div>
-  <div class="x_content" uib-collapse="isCollapsed">
-    <div />
-    hello
+  <div class="x_content">
+    <uib-accordion close-others="oneAtATime" ng-repeat="(name, runs) in courses">
+      <div uib-accordion-group class="panel-default" heading="{{name}} ({{runs[0].course_code}})">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Duration (weeks)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="run in runs">
+            <tr>
+              <td><strong>{{run.run}}</strong></td>
+              <td>{{run.start_date.split('T')[0]}}</td>
+              <td>{{run.end_date.split('T')[0]}}</td>
+              <td>{{run.duration_weeks}}</td>
+              <td><a href="#!/courses/{{run.course_code}}/run/{{run.run}}/enrolment"><button type="submit" class="btn btn-success">View</button></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </uib-accordion>
   </div>
 </div>
