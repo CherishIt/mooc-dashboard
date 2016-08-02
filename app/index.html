@@ -67,7 +67,7 @@
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul-->
                   </li>
-                  <li ng-if="course_code"><a><i class="fa fa-edit"></i> CourseInfo</a>
+                  <li ng-show="course_code"><a><i class="fa fa-edit"></i> CourseInfo</a>
                     <!--ul class="nav child_menu">
                       <li><a href="form.html">General Form</a></li>
                       <li><a href="form_advanced.html">Advanced Components</a></li>
@@ -77,18 +77,18 @@
                       <li><a href="form_buttons.html">Form Buttons</a></li>
                     </ul-->
                   </li>
-                  <li ng-if="run"><a><i class="fa fa-desktop"></i> Basics <span class="fa fa-chevron-down"></span></a>
+                  <li ng-show="run"><a><i class="fa fa-desktop"></i> Basics <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/enrolment">Enrolment</a></li>
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/step_activity">Step Activities</a></li>
                     </ul>
                   </li>
-                  <li ng-if="course_code"><a><i class="fa fa-table"></i> Comment <span class="fa fa-chevron-down"></span></a>
+                  <li ng-show="course_code"><a><i class="fa fa-table"></i> Comment <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/comment">Comment</a></li>
                     </ul>
                   </li>
-                  <li ng-if="course_code"><a><i class="fa fa-bar-chart-o"></i> Network <span class="fa fa-chevron-down"></span></a>
+                  <li ng-show="course_code"><a><i class="fa fa-bar-chart-o"></i> Network <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/comment_network">Comments' Network</a></li>
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/learner_network">Learners' Network</a></li>
