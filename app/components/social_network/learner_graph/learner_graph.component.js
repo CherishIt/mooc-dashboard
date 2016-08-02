@@ -3,12 +3,12 @@
 angular.
   module('comment').
   component('learnerGraph', {
-    templateUrl: 'social_network/learner_graph/learner_graph.template.html',
-    controller: function commentNetworkController($http, $scope) {
+    templateUrl: 'components/social_network/learner_graph/learner_graph.template.html',
+    controller: function commentNetworkController($http, $scope, $routeParams) {
       //var self = this;
 
       //default chart replacement
-      var chart = echarts.init(document.getElementById('chart'));
+      var chart = echarts.init(document.getElementById('comment_network'));
 
       var option = {
         tooltip: {},
@@ -53,7 +53,8 @@ angular.
 
       $scope.draw = function(){
         chart.showLoading();
-        $http.get('http://localhost:3000/comment/learner_network?top=' + $scope.top).then(function(response) {
+        $http.get('http://localhost:3000/courses/'+ $routeParams.course_code
+          + '/run/' + $routeParams.run + '/learner_network?top=' + $scope.top).then(function(response) {
           
 
           results = response.data;
@@ -113,7 +114,8 @@ angular.
       $scope.draw();
 
 
-/*$http.get('http://localhost:3000/comment/learner_network/metrics').then(function(response) {
+$http.get('http://localhost:3000/courses/'+ $routeParams.course_code
+          + '/run/' + $routeParams.run + '/learner_network_metrics').then(function(response) {
 
       var d = []
       response.data.density.forEach(function(n){
@@ -200,7 +202,7 @@ angular.
             right:100
           },
           tooltip: {
-
+            trigger : 'axis'
           },
           toolbox: {
             show: true,
@@ -237,6 +239,6 @@ angular.
 
     });
 
-*/
+
     }
   });

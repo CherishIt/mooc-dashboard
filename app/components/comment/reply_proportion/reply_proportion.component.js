@@ -58,6 +58,7 @@ component('replyProportionPie', {
       tooltip: [{
         formatter: '{b} <br> Comments Number : {c}',
         position: 'inside',
+        trigger : 'axis'
         //show: false
       }],
       toolbox: {

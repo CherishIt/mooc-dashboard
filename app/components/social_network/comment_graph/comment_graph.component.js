@@ -3,11 +3,11 @@
 angular.
   module('comment').
   component('commentGraph', {
-    templateUrl: 'social_network/comment_graph/comment_graph.template.html',
-    controller: function commentNetworkController($http, $scope) {
+    templateUrl: 'components/social_network/comment_graph/comment_graph.template.html',
+    controller: function commentNetworkController($http, $scope, $routeParams) {
       //var self = this;
 
-      var myChart = echarts.init(document.getElementById('chart_div'));
+      var myChart = echarts.init(document.getElementById('comment_network'));
 
       //original chart before load data
       var option = {
@@ -52,7 +52,8 @@ angular.
 
 
       //http get data source
-      $http.get('http://localhost:3000/courses/UL/1/comment/comment_network').then(function(response) {
+      $http.get('http://localhost:3000/courses/' + $routeParams.course_code 
+        + '/run/' + $routeParams.run + '/comment_network').then(function(response) {
 
         results = response.data;
         results.forEach(function(n){
@@ -124,7 +125,7 @@ angular.
         for (var i = 1; i < weeks.length; i++) {
           options.push({
             title: {
-              text: 'Week ' + (i+2)
+              text: 'Week ' + (i+1)
             },
             series: [{
               nodes: filterWeek(nodes, weeks[i]),
@@ -233,7 +234,9 @@ angular.
         return array;
       }
 
-      
+      $scope.resize = function(){
+        myChart.resize();
+      }
       
     }
   });

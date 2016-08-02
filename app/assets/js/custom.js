@@ -26,11 +26,13 @@ function fullscreen(ele) {
     //console.log($ICON)
     if ($ICON.hasClass('glyphicon-resize-full')) {
         $ICON.addClass('glyphicon-resize-small').removeClass('glyphicon-resize-full');
-        $PANEL.css('position','fixed').css('top',0).css('left',0).css('bottom',0).css('right',0);
+        $PANEL.css('position','fixed').css('top',0).css('left',0).css('bottom',0).css('right',0)
+        .css('margin-bottom',0).css('z-index',9999);
         $CONTENT.css('width','100%');
     } else if ($ICON.hasClass('glyphicon-resize-small')) {
         $ICON.addClass('glyphicon-resize-full').removeClass('glyphicon-resize-small');
-        $PANEL.css('position','relative').css('top','').css('left','').css('bottom','').css('right','');
+        $PANEL.css('position','relative').css('top','').css('left','').css('bottom','').css('right','')
+        .css('margin-bottom','').css('z-index','');
         $CONTENT.css('width','100%');
     }
 }
