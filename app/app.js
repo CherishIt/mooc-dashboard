@@ -9,6 +9,7 @@ angular.module('myApp', [
   'comment',
   'socialNetwork',
   'courses',
+  'demographics',
   'ui.bootstrap'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

@@ -77,6 +77,8 @@
                       <li><a href="form_buttons.html">Form Buttons</a></li>
                     </ul-->
                   </li>
+                  <li ng-show="run"><a href="#!/courses/{{course_code}}/run/{{run}}/demographics"><i class="fa fa-desktop"></i> Demographics</a>
+                  </li>
                   <li ng-show="run"><a><i class="fa fa-desktop"></i> Basics <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#!/courses/{{course_code}}/run/{{run}}/enrolment">Enrolment</a></li>
@@ -290,6 +292,9 @@
   <script src="components/courses/courses.module.js"></script>
   <script src="components/courses/courses.config.js"></script>
   <script src="components/courses/courses.component.js"></script>
+  <script src="components/demographics/demographics.module.js"></script>
+  <script src="components/demographics/demographics.config.js"></script>
+  <script src="components/demographics/demographics.component.js"></script>
   <script src="components/enrolment/enrolment.module.js"></script>
   <script src="components/enrolment/enrolment.config.js"></script>
   <script src="components/enrolment/enrolment.component.js"></script>

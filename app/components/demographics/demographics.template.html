@@ -1,0 +1,146 @@
+<div class="x_panel tile">
+  <div class="x_title">
+    <h2>Overview</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content" uib-collapse="isCollapsed">
+    <div class="row tile_count">
+      <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Total Learners</span>
+        <div class="count">{{overview.total}}</div>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Learners with Demographics</span>
+        <div class="count">{{overview.with_demo}}</div>
+        <span class="count_bottom"><i class="green">{{(overview.with_demo/overview.total*100).toFixed(2)}}% of all </i></span>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Fully Participated Learners</span>
+        <div class="count">{{overview.fully_participated}}</div>
+        <span class="count_bottom"><i class="green">{{(overview.fully_participated/overview.total*100).toFixed(2)}}% of all</i></span>
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top"><i class="fa fa-user"></i> Purchased Statement</span>
+        <div class="count">{{overview.purchased_statement}}</div>
+        <span class="count_bottom"><i class="green">{{(overview.purchased_statement/overview.total*100).toFixed(2)}}% of all</i></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!--gender-->
+  <div class="col-sm-6">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Gender</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed1 = !isCollapsed1"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed1">
+        <div id="gender" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+  <!--Age range-->
+  <div class="col-sm-6">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Age Range</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed2 = !isCollapsed2"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed2">
+        <div id="age_range" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <!--highest education-->
+  <div class="col-sm-6">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Highest Education Level</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed3 = !isCollapsed3"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed3">
+        <div id="highest_education_level" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+  <!--employment status-->
+  <div class="col-sm-6">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Employment Status</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed">
+        <div id="employment_status" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <!--employment area-->
+  <div class="col-sm-12">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Employment Area</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed4 = !isCollapsed4"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed4">
+        <div id="employment_area" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <!--employment area-->
+  <div class="col-sm-12">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Country</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed5 = !isCollapsed5"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed5">
+        <div id="country" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>
