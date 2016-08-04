@@ -66,7 +66,7 @@
                       <li><a href="index3.html">Dashboard3</a></li>
                     </ul-->
                   </li>
-                  <li ng-show="course_code"><a><i class="fa fa-edit"></i> CourseInfo</a>
+                  <li ng-show="course_code"><a href="#!/courses/{{course_code}}"><i class="fa fa-edit"></i> CourseInfo</a>
                     <!--ul class="nav child_menu">
                       <li><a href="form.html">General Form</a></li>
                       <li><a href="form_advanced.html">Advanced Components</a></li>
@@ -294,6 +294,9 @@
   <script src="components/courses/courses.module.js"></script>
   <script src="components/courses/courses.config.js"></script>
   <script src="components/courses/courses.component.js"></script>
+  <script src="components/course_info/course_info.module.js"></script>
+  <script src="components/course_info/course_info.config.js"></script>
+  <script src="components/course_info/course_info.component.js"></script>
   <script src="components/demographics/demographics.module.js"></script>
   <script src="components/demographics/demographics.config.js"></script>
   <script src="components/demographics/demographics.component.js"></script>

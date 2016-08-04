@@ -6,4 +6,7 @@ angular.module('courses')
   $routeProvider.when('/courses', {
     template: '<courses></courses>'
   });
+  $routeProvider.when('/', {
+    template: '<courses></courses>'
+  });
 }]);

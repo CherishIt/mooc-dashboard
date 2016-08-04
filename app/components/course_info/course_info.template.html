@@ -1,0 +1,253 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Overview</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed0 = !isCollapsed0"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed0">
+        <div class="row tile_count">
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Runs</span>
+            <div class="count">{{stats.overview.runs}}</div>
+            <span class="count_bottom"><i class="green"></i></span>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Total Enrolment</span>
+            <div class="count">{{stats.overview.enrolled}}</div>
+            <span class="count_bottom"><i class="green"></i></span>
+          </div>
+          <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Fully Participated Learners</span>
+            <div class="count">{{stats.overview.fully_participated}}</div>
+            <span class="count_bottom"><i class="green">Percentage: {{(stats.overview.fully_participated/stats.overview.enrolled*100).toFixed(2)}}%</i></span>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Purchased Statement</span>
+            <div class="count">{{stats.overview.purchased_statement}}</div>
+            <span class="count_bottom"><i class="green">Percentage: {{(stats.overview.purchased_statement/stats.overview.enrolled*100).toFixed(2)}}%</i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Runs</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed1 = !isCollapsed1"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed1">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>University</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Duration (weeks)</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="run in stats.runs">
+            <tr>
+              <td><strong>{{run.run}}</strong></td>
+              <td>{{run.uni_name}}</td>
+              <td>{{run.start_date.split('T')[0]}}</td>
+              <td>{{run.end_date.split('T')[0]}}</td>
+              <td>{{run.duration_weeks}}</td>
+              <td>
+                <td><a href="#!/courses/{{run.course_code}}/run/{{run.run}}/demographics"><button type="submit" class="btn btn-success">View</button></a></td>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-7">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Learners</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed2 = !isCollapsed2"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed2">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Enrolled</th>
+              <th>Unenrolled</th>
+              <th>Fully Participated</th>
+              <th>Purchased Statement</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="item in stats.enrolment">
+            <tr>
+              <td><strong>{{item._id}}</strong></td>
+              <td>{{item.enrolled}}</td>
+              <td>{{item.unenrolled}} ({{(item.unenrolled/item.enrolled*100).toFixed(2)}}%)</td>
+              <td>{{item.fully_participated}} ({{(item.fully_participated/item.enrolled*100).toFixed(2)}}%)</td>
+              <td>{{item.purchased_statement}} ({{(item.fully_participated/item.enrolled*100).toFixed(2)}}%)</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Comments</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed3 = !isCollapsed3"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Comments</th>
+              <th>Learners Involved</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="(key,item) in stats.comment">
+            <tr>
+              <td><strong>{{item._id}}</strong></td>
+              <td>{{item.comments}}</td>
+              <td>{{item.total_commentor}} ({{(item.total_commentor/stats.enrolment[key].enrolled*100).toFixed(2)}}%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Step Activity</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed4 = !isCollapsed4"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Step Started</th>
+              <th>Step Completed</th>
+              <th>Completion Rate(%)</th>
+              <th>Learners Involved</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="(key,item) in stats.step_activity">
+            <tr>
+              <td><strong>{{item._id}}</strong></td>
+              <td>{{item.step_started}}</td>
+              <td>{{item.step_completed}}</td>
+              <td>{{(item.step_completed/item.step_started*100).toFixed(2)}}%</td>
+              <td>{{item.total_learner}} ({{(item.total_learner/stats.enrolment[key].enrolled*100).toFixed(2)}}%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Quiz Response</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed5 = !isCollapsed5"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Answer Submitted</th>
+              <th>Correct</th>
+              <th>Learners Involved</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="(key,item) in stats.question_response">
+            <tr>
+              <td><strong>{{item._id}}</strong></td>
+              <td>{{item.submitted}}</td>
+              <td>{{item.correct}} ({{(item.correct/item.submitted*100).toFixed(2)}}%)</td>
+              <td>{{item.total_learner}} ({{(item.total_learner/stats.enrolment[key].enrolled*100).toFixed(2)}}%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2><i class="fa fa-align-left"></i> Peer Review Assignment</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed6 = !isCollapsed6"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Run</th>
+              <th>Submitted</th>
+              <th>Moderated</th>
+              <th>Total Reviews</th>
+              <th>Average Reviews / Assignment</th>
+              <th>Learners Involved</th>
+              <th>Reviewers Involved</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="(key,item) in stats.peer_review_assignment">
+            <tr>
+              <td><strong>{{item._id}}</strong></td>
+              <td>{{item.submitted}}</td>
+              <td>{{item.moderated}}</td>
+              <td>{{item.reviews}}</td>
+              <td>{{(item.reviews/item.submitted).toFixed(2)}}</td>
+              <td>{{item.total_learner}} ({{(item.total_learner/stats.enrolment[key].enrolled*100).toFixed(2)}}%)</td>
+              <td>{{item.total_reviewers}} ({{(item.total_reviewers/stats.enrolment[key].enrolled*100).toFixed(2)}}%)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
