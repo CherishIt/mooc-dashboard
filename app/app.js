@@ -13,6 +13,7 @@ angular.module('myApp', [
   'ui.bootstrap'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  //$locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('!');
   //google.charts.load('current', {'packages':['corechart', 'controls']});
   //$routeProvider.otherwise({redirectTo: '/enrolment'});
