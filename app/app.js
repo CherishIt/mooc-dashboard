@@ -9,6 +9,7 @@ angular.module('myApp', [
   'comment',
   'socialNetwork',
   'courses',
+  'course_info',
   'demographics',
   'ui.bootstrap'
 ])
@@ -22,15 +23,18 @@ angular.module('myApp', [
   $scope.$on('$routeChangeSuccess', function() {
     // $routeParams should be populated here
     if (!$scope.course_code) {
-    //  return;
-    console.log($routeParams)
-    $scope.course_code = $routeParams.course_code;
-    $scope.run = $routeParams.run;
-    console.log($scope.course_code);
-    console.log($scope.run);
-    } else {
+      //  return;
+      console.log($routeParams)
+      $scope.course_code = $routeParams.course_code;
+      $scope.run = $routeParams.run;
       console.log($scope.course_code);
       console.log($scope.run);
+    }
+    if (!$scope.run) {
+      if ($scope.course_code)
+        $scope.run = 1;
+      //console.log($scope.course_code);
+      //console.log($scope.run);
     }
   });
   
