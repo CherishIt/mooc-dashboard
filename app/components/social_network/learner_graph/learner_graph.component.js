@@ -209,7 +209,8 @@ $http.get('http://localhost:3000/courses/'+ $routeParams.course_code
             feature: {
               dataView: {
                 title: "Data View",
-                readOnly: true
+                readOnly: true,
+                lang: ['DataView', 'Close', 'Refresh']
               },
               saveAsImage: {
                 title: "Save as Image"

@@ -22,14 +22,14 @@ angular.
           var employment_area = response.data.employment_area;
           $scope.overview = data.overview;
 
-          var chart_gender = echarts.init(document.getElementById('gender'));
+          //var chart_gender = echarts.init(document.getElementById('gender'));
           var chart_country_map = echarts.init(document.getElementById('country_map'));
           //var chart_age_range = echarts.init(document.getElementById('age_range'));
           //var chart_highest_education_level = echarts.init(document.getElementById('highest_education_level'));
           //var chart_employment_status= echarts.init(document.getElementById('employment_status'));
           //var chart_gender = echarts.init(document.getElementById('gender'));
 
-          var option_gender = {
+          /*var option_gender = {
             title: [{
               text: 'All',
               top: '15%',
@@ -79,7 +79,7 @@ angular.
                 .filter(function(e){return e;})
             }]
           }
-          //chart_gender.setOption(option_gender);
+          chart_gender.setOption(option_gender);*/
           var map_data = data.country.map(function(e){ 
             if(e.name) {
               return {name:e.name, value:e.number}; 
@@ -99,7 +99,8 @@ angular.
                 feature: {
                     dataView: {
                     title: "Data View",
-                    readOnly: true
+                    readOnly: true,
+                    lang: ['DataView', 'Close', 'Refresh']
                   },
                   saveAsImage: {
                     title: "Save as Image"
@@ -162,7 +163,8 @@ angular.
                 feature : {
                   dataView: {
                     title: "Data View",
-                    readOnly: true
+                    readOnly: true,
+                    lang: ['DataView', 'Close', 'Refresh']
                   },
                   saveAsImage: {
                     title: "Save as Image"

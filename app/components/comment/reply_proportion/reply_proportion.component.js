@@ -66,7 +66,8 @@ component('replyProportionPie', {
         feature: {
           dataView: {
             title: "Data View",
-            readOnly: true
+            readOnly: true,
+            lang: ['DataView', 'Close', 'Refresh']
           },
           saveAsImage: {
             title: "Save as Image"
