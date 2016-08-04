@@ -14,7 +14,7 @@ angular.module('myApp', [
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
-  google.charts.load('current', {'packages':['corechart', 'controls']});
+  //google.charts.load('current', {'packages':['corechart', 'controls']});
   //$routeProvider.otherwise({redirectTo: '/enrolment'});
 }])
 .controller('RouteController', function($scope, $route, $routeParams){

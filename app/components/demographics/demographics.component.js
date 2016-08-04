@@ -23,6 +23,7 @@ angular.
           $scope.overview = data.overview;
 
           var chart_gender = echarts.init(document.getElementById('gender'));
+          var chart_country_map = echarts.init(document.getElementById('country_map'));
           //var chart_age_range = echarts.init(document.getElementById('age_range'));
           //var chart_highest_education_level = echarts.init(document.getElementById('highest_education_level'));
           //var chart_employment_status= echarts.init(document.getElementById('employment_status'));
@@ -79,6 +80,60 @@ angular.
             }]
           }
           //chart_gender.setOption(option_gender);
+          var map_data = data.country.map(function(e){ 
+            if(e.name) {
+              return {name:e.name, value:e.number}; 
+            }
+          })
+          .filter(function(e){if(e===undefined)return false; else return true;});
+          console.log(map_data.map(function(e){return e.name}))
+          var option_country_map = {
+            tooltip: {
+                trigger: 'item'
+            },
+            toolbox: {
+                show: true,
+                orient: 'vertical',
+                left: 'right',
+                top: 'center',
+                feature: {
+                    dataView: {
+                    title: "Data View",
+                    readOnly: true
+                  },
+                  saveAsImage: {
+                    title: "Save as Image"
+                  }
+                }
+            },
+            visualMap: {
+                type: 'continuous',
+                splitNumber: 3,
+                max: _.maxBy(map_data,'value').value,
+                //min: 0,
+                //max: Math.max(data.country.map(function(e){return e.value})),
+                //text:['High','Low'],
+                //realtime: false,
+                calculable: true
+            },
+            series: [{
+              name: 'Country',
+              type: 'map',
+              mapType: 'world',
+              roam: true,
+              nameMap: {
+                'United States of America': 'United States',
+                'Vietnam':'Viet Nam',
+                'Russia':'Russian Federation'
+              },
+              itemStyle:{
+                  emphasis:{label:{show:true}}
+              },
+              data: map_data
+            }]
+          };
+
+          chart_country_map.setOption(option_country_map);
 
           Object.keys(data).forEach(function(name){
             if (name === 'overview')
