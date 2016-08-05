@@ -1,0 +1,50 @@
+
+<div class="x_panel tile">
+  <div class="x_title">
+    <h2>Quiz Result</h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <!--li uib-dropdown>
+        <a href="#" class="dropdown-toggle" uib-dropdown-toggle role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+        <ul uib-dropdown-menu role="menu">
+          <li><a>Settings 1</a>
+          </li>
+          <li><a>Settings 2</a>
+          </li>
+        </ul>
+      </li-->
+      <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
+      </li>
+      <li><a onclick="fullscreen(this)" ng-click="resize('quiz_result')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content" uib-collapse="isCollapsed">
+    <div id="quiz_result" class="chart" style="height:400px;width:100%"/>
+  </div>
+</div>
+
+<div class="x_panel tile">
+  <div class="x_title">
+    <h2>Quiz Correct Rate</h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <!--li uib-dropdown>
+        <a href="#" class="dropdown-toggle" uib-dropdown-toggle role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+        <ul uib-dropdown-menu role="menu">
+          <li><a>Settings 1</a>
+          </li>
+          <li><a>Settings 2</a>
+          </li>
+        </ul>
+      </li-->
+      <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
+      </li>
+      <li><a onclick="fullscreen(this)" ng-click="resize('correct_percentage')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content" uib-collapse="isCollapsed">
+    <div id="correct_percentage" class="chart" style="height:400px;width:100%"/>
+  </div>
+</div>

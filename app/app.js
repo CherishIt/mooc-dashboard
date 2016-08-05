@@ -11,6 +11,7 @@ angular.module('myApp', [
   'courses',
   'course_info',
   'demographics',
+  'quiz_result',
   'ui.bootstrap'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
