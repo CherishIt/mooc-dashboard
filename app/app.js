@@ -22,7 +22,7 @@ angular.module('myApp', [
 .controller('RouteController', function($scope, $route, $routeParams){
   $scope.$on('$routeChangeSuccess', function() {
     // $routeParams should be populated here
-    if (!$scope.course_code) {
+    if ($routeParams.course_code) {
       //  return;
       console.log($routeParams)
       $scope.course_code = $routeParams.course_code;
