@@ -4,12 +4,12 @@
     <ul class="nav navbar-right panel_toolbox">
       <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
       </li>
-      <li><a onclick="fullscreen(this)"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+      <li><a onclick="fullscreen(this)" ng-click="resize('comment_distribution')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
       </li>
     </ul>
     <div class="clearfix"></div>
   </div>
   <div class="x_content" uib-collapse="isCollapsed">
-    <div id="comment_distribution" style="height:400px;width:100%"/>
+    <div id="comment_distribution" class="chart" style="height:400px;width:100%"/>
   </div>
 </div>

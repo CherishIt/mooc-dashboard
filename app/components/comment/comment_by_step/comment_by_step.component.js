@@ -7,12 +7,14 @@ component('commentByStep', {
   controller: function stepStartedController($http, $routeParams, $scope) {
     //var self = this;
 
+    var charts = {};
     $http.get('http://localhost:3000/courses/' +
       $routeParams.course_code + '/run/' + $routeParams.run + '/comment').then(function(response) {
 
       var data = response.data;
 
       var comment_by_step = echarts.init(document.getElementById('comment_by_step'));
+      charts.comment_by_step = comment_by_step;
 
       var option = {
         tooltip: {
@@ -79,6 +81,10 @@ component('commentByStep', {
       };
 
       comment_by_step.setOption(option);
+
+      $scope.resize = function(name){
+        charts[name].resize();
+      }
 
       //self.enrolmentData = response.data;
       //google.charts.load('current', {'packages':['corechart']});

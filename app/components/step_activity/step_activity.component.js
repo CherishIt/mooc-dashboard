@@ -9,12 +9,16 @@ angular.
       //google.charts.setOnLoadCallback(drawChart);
 
       //function drawChart(){
+
+        var charts = {}
+
         $http.get('http://localhost:3000/courses/' + $routeParams.course_code + '/run/' + $routeParams.run + '/step_activity').then(function(response) {
           //self.enrolmentData = response.data;
           console.log('http://localhost:3000/courses/' + ctrl.course_code + '/run/' + ctrl.run + '/step_activity')
           var data = response.data;
 
           var chart_step_activity = echarts.init(document.getElementById('step_activity'));
+          charts.step_activity = chart_step_activity;
 
           var option = {
             tooltip :{
@@ -80,7 +84,9 @@ angular.
 
           chart_step_activity.setOption(option);
 
-
+          $scope.resize = function(name){
+            charts[name].resize();
+          };
 
           /*var data = new google.visualization.DataTable();
           data.addColumn('string', 'Step');

@@ -7,7 +7,10 @@ angular.
     controller: function commentNetworkController($http, $scope, $routeParams) {
       //var self = this;
 
+      var charts = {}
+
       var myChart = echarts.init(document.getElementById('comment_network'));
+      charts.comment_network = myChart;
 
       //original chart before load data
       var option = {
@@ -235,8 +238,8 @@ angular.
         return array;
       }
 
-      $scope.resize = function(){
-        myChart.resize();
+      $scope.resize = function(name){
+        charts[name].resize();
       }
       
     }

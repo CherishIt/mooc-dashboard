@@ -5,7 +5,7 @@
     <ul class="nav navbar-right panel_toolbox">
       <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
       </li>
-      <li><a onclick="fullscreen(this)" ng-click="resize()"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+      <li><a onclick="fullscreen(this)" ng-click="resize('learner_network')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
       </li>
     </ul>
     <div class="clearfix"></div>
@@ -29,9 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div id="comment_network" style="height:600px;width:100%"/>
-    </div>
+      <div id="learner_network" class="chart" style="height:600px;width:100%"/>
   </div>
 </div>
 </div>
@@ -43,16 +41,13 @@
         <ul class="nav navbar-right panel_toolbox">
           <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
           </li>
-          <li><a onclick="fullscreen(this)" ng-click="resize()"><i class="glyphicon glyphicon-resize-full" aria-    hidden="true"></i></a>
+          <li><a onclick="fullscreen(this)" ng-click="resize('density')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
           </li>
         </ul>
         <div class="clearfix"></div>
       </div>
       <div class="x_content" uib-collapse="isCollapsed">
-        <div class="row">
-          <div id="density" style="height:400px;width:100%">
-        </div>
-        </div>
+          <div id="density" class="chart" style="height:400px;width:100%"></div>
       </div>
     </div>
   </div>
@@ -63,16 +58,13 @@
         <ul class="nav navbar-right panel_toolbox">
           <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
           </li>
-          <li><a onclick="fullscreen(this)" ng-click="resize()"><i class="glyphicon glyphicon-resize-full" aria-    hidden="true"></i></a>
+          <li><a onclick="fullscreen(this)" ng-click="resize('distribution')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
           </li>
         </ul>
         <div class="clearfix"></div>
       </div>
       <div class="x_content" uib-collapse="isCollapsed">
-        <div class="row">
-          <div id="distribution" style="height:400px;width:100%">
-        </div>
-        </div>
+          <div id="distribution" class="chart" style="height:400px;width:100%"></div>
       </div>
     </div>
   </div>

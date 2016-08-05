@@ -4,18 +4,23 @@ angular.
   module('enrolment').
   component('timeLine', {
     templateUrl: 'components/enrolment/enrolment.template.html',
-    controller: function enrolmentController($http, $routeParams) {
+    controller: function enrolmentController($http, $routeParams, $scope) {
       //var self = this;
       //google.charts.load('current', {'packages':['corechart']});
       //google.charts.setOnLoadCallback(drawChart);
 
       //function drawChart(){
+
+      //for resize chart
+      var charts = {};
         $http.get('http://localhost:3000/courses/'
           + $routeParams.course_code+'/run/' + $routeParams.run + '/enrolment').then(function(response) {
 
           var data = response.data;
 
           var chart_enrolment = echarts.init(document.getElementById('enrolment'));
+          charts.enrolment = chart_enrolment;
+
           var option = {
             tooltip :{
               trigger : 'axis'
@@ -71,6 +76,10 @@ angular.
           };
 
           chart_enrolment.setOption(option);
+
+          $scope.resize = function(name){
+            charts[name].resize();
+          }
           //self.enrolmentData = response.data;
           //google.charts.load('current', {'packages':['corechart']});
           // var data = new google.visualization.DataTable();

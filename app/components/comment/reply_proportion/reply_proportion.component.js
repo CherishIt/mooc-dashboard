@@ -7,7 +7,9 @@ component('replyProportionPie', {
   controller: function commentNetworkController($http, $scope, $routeParams) {
     //var self = this;
 
+    var charts = {};
     var chart_comment_distribution = echarts.init(document.getElementById('comment_distribution'));
+    charts.comment_distribution = chart_comment_distribution;
 
     chart_comment_distribution.showLoading();
     var results = [];
@@ -113,6 +115,10 @@ component('replyProportionPie', {
       chart_comment_distribution.hideLoading();
       //console.log($scope.steps)
     });
+
+    $scope.resize = function(name){
+      charts[name].resize();
+    }
 
     function mergeReply(data, min, max, name) {
       var entry = {
