@@ -1,0 +1,43 @@
+<div class="x_panel tile">
+  <div class="x_title">
+    <h2>Word Cloud</h2>
+    <ul class="nav navbar-right panel_toolbox">
+      <li><a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
+      </li>
+      <li><a onclick="fullscreen(this)" ng-click="resize('wordcloud')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content" uib-collapse="isCollapsed">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row">
+          <label> Filter:</label>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            Week:
+            <select ng-model="week" ng-change="filterWeek()" class="input-sm">
+              <option ng-repeat="option in weeks" value="{{option}}">{{option}}</option>
+            </select>
+          </div>
+          <div class="col-sm-4">
+            Step:
+            <select ng-model="step" ng-change="filterStep()" class="input-sm">
+              <option ng-repeat="option in steps" value="{{option}}">{{option}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>Maximum words:</label><br>
+        <label>0</label>
+        <input id="max" type="text" class="span2" value="0" data-slider-min="0" data-slider-max="200" data-slider-step="1" data-slider-value="200" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+        <label>&nbsp;&nbsp;200</label>
+      </div>
+    </div>
+    <div id="wordcloud" class="chart" style="height:400px;width:100%" />
+  </div>
+  
+</div>
