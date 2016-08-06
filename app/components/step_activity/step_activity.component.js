@@ -59,10 +59,7 @@ angular.
               type: 'value'
             },{
               name: 'Completion Rate',
-              type: 'value',
-              axisLabel: {
-                formatter: '{value}%'
-              }
+              type: 'value'
             }],
             series : [{
               name : 'Started',
@@ -78,7 +75,7 @@ angular.
               name : 'Completion Rate',
               type : 'line',
               yAxisIndex : 1,
-              data : data.map(function(e){return e.completed/e.started})
+              data : data.map(function(e){return (e.completed/e.started).toFixed(3)})
             }]
           };
 
