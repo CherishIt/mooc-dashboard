@@ -6,4 +6,7 @@ angular.module('demographics')
   $routeProvider.when('/courses/:course_code/run/:run/demographics', {
     template: '<demographics></demographics>'
   });
+  $routeProvider.when('/courses/:course_code/run/:run', {
+    template: '<demographics></demographics>'
+  });
 }]);
