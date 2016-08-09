@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Filter</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed01 = !isCollapsed01"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed01">
+        <div class="row">
+          <div class="col-sm-4">
+            <label>By:</label>
+            <select ng-model="by" class="input-sm">
+            <option value="step">step</option>
+            <option value="week">week</option>
+          </select>
+          </div>
+          <div class="col-sm-4">
+            <label class="col-md-2">Keyword:</label>
+            <input type="text" ng-model="keyword" class="form-control col-md-2">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10">
+          </div>
+          <div class="col-sm-2">
+            <input type="submit" class="btn btn-primary" value="Redraw" ng-click="redraw()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Comment Number of Different Sentiment   ( By: {{by}} ) {{keyword ? " ( Keyword: " + keyword + " ) ":null}}</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed1 = !isCollapsed1"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)" ng-click="resize('sentiment')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed1">
+        <div id="sentiment" class="chart" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Sentiment Score Per Comment ( By: {{by}} ) {{keyword ? " ( Keyword: " + keyword + " ) ":null}}</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed2 = !isCollapsed2"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)" ng-click="resize('score')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed2">
+        <div id="score" class="chart" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Positive Word Cloud {{keyword ? " ( Keyword: " + keyword + " ) ":null}}</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed3 = !isCollapsed3"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)" ng-click="resize('pos_wordcloud')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed3">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <label> {{by}}:</label>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <select ng-model="posFilter" ng-change="drawPos()" class="input-sm">
+                  <option ng-repeat="option in cloudOptions" value="{{option}}">{{option}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <label>Ignore Top Several Words:</label><br>
+            <label>0</label>
+            <input id="pos_ignore" type="text" class="span2" value="0" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+            <label>&nbsp;&nbsp;50</label>
+          </div>
+        </div>
+        <div id="pos_wordcloud" class="chart" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="x_panel tile">
+      <div class="x_title">
+        <h2>Negative Word Cloud {{keyword ? " ( Keyword: " + keyword + " ) ":null}}</h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a ng-click="isCollapsed4 = !isCollapsed4"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a onclick="fullscreen(this)" ng-click="resize('neg_wordcloud')"><i class="glyphicon glyphicon-resize-full" aria-hidden="true"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content" uib-collapse="isCollapsed4">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <label> {{by}}:</label>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <select ng-model="negFilter" ng-change="drawNeg()" class="input-sm">
+                  <option ng-repeat="option in cloudOptions" value="{{option}}">{{option}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <label>Ignore Top Several Words:</label><br>
+            <label>0</label>
+            <input id="neg_ignore" type="text" class="span2" value="0" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="before" data-slider-tooltip="show">
+            <label>&nbsp;&nbsp;50</label>
+          </div>
+        </div>
+        <div id="neg_wordcloud" class="chart" style="height:400px;width:100%" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ angular.module('myApp', [
   'stepActivity',
   'comment',
   'word_analysis',
+  'sentiment_analysis',
   'socialNetwork',
   'courses',
   'course_info',

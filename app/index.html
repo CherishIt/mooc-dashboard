@@ -87,8 +87,9 @@
                   </li>
                   <li ng-show="course_code"><a><i class="fa fa-table"></i> Comment <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/comment">Comment</a></li>
-                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/word_analysis">Word Analysis</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/comment">Overview</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/word_analysis">Word Cloud</a></li>
+                      <li><a href="#!/courses/{{course_code}}/run/{{run}}/sentiment_analysis">Sentiment Analysis</a></li>
                     </ul>
                   </li>
                   <li ng-show="course_code"><a><i class="fa fa-bar-chart-o"></i> Network <span class="fa fa-chevron-down"></span></a>
@@ -322,6 +323,9 @@
   <script src="components/word_analysis/word_analysis.module.js"></script>
   <script src="components/word_analysis/word_analysis.config.js"></script>
   <script src="components/word_analysis/word_analysis.component.js"></script>
+  <script src="components/sentiment_analysis/sentiment_analysis.module.js"></script>
+  <script src="components/sentiment_analysis/sentiment_analysis.config.js"></script>
+  <script src="components/sentiment_analysis/sentiment_analysis.component.js"></script>
   <script src="components/social_network/social_network.module.js"></script>
   <script src="components/social_network/social_network.config.js"></script>
   <script src="components/social_network/comment_graph/comment_graph.component.js"></script>
