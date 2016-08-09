@@ -42,7 +42,7 @@ component('wordCloud', {
 
     function getData(week, step, callback) {
       chart_wordcloud.showLoading();
-      var url = 'http://localhost:3000/courses/' +
+      var url = API_BASE_URL + 'courses/' +
       $routeParams.course_code + '/run/' + $routeParams.run + '/comment_analysis';
       if (week)
         url += '?week=' + week;
