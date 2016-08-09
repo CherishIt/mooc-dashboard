@@ -22,6 +22,7 @@ angular.module('myApp', [
   //google.charts.load('current', {'packages':['corechart', 'controls']});
   //$routeProvider.otherwise({redirectTo: '/enrolment'});
 }])
+.constant('API_BASE_URL', 'http://localhost:3000/')
 .controller('RouteController', function($scope, $route, $routeParams){
   $scope.$on('$routeChangeSuccess', function() {
     // $routeParams should be populated here

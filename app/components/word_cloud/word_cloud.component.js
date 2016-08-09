@@ -4,7 +4,7 @@ angular.
 module('word_cloud').
 component('wordCloud', {
   templateUrl: 'components/word_cloud/word_cloud.template.html',
-  controller: function wordAnalysisController($http, $routeParams, $scope) {
+  controller: function wordAnalysisController($http, $routeParams, $scope,API_BASE_URL) {
 
     //for resize chart
     var charts = {};
@@ -58,7 +58,7 @@ component('wordCloud', {
 
     chart_wordcloud.showLoading();
 
-    $http.get('http://localhost:3000/courses/' +
+    $http.get(API_BASE_URL+'courses/' +
       $routeParams.course_code + '/run/' + $routeParams.run + '/comment_analysis').then(function(response) {
 
       all_data = response.data.freq.slice(0,max);

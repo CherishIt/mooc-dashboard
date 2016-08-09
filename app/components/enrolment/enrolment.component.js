@@ -4,7 +4,7 @@ angular.
   module('enrolment').
   component('timeLine', {
     templateUrl: 'components/enrolment/enrolment.template.html',
-    controller: function enrolmentController($http, $routeParams, $scope) {
+    controller: function enrolmentController($http, $routeParams, $scope, API_BASE_URL) {
       //var self = this;
       //google.charts.load('current', {'packages':['corechart']});
       //google.charts.setOnLoadCallback(drawChart);
@@ -13,7 +13,7 @@ angular.
 
       //for resize chart
       var charts = {};
-        $http.get('http://localhost:3000/courses/'
+        $http.get(API_BASE_URL+ 'courses/'
           + $routeParams.course_code+'/run/' + $routeParams.run + '/enrolment').then(function(response) {
 
           var data = response.data;

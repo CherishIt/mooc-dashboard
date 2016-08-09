@@ -4,7 +4,7 @@ angular.
 module('comment').
 component('learnerGraph', {
   templateUrl: 'components/social_network/learner_graph/learner_graph.template.html',
-  controller: function commentNetworkController($http, $scope, $routeParams) {
+  controller: function commentNetworkController($http, $scope, $routeParams,API_BASE_URL) {
     //var self = this;
 
     //default chart replacement
@@ -76,7 +76,7 @@ component('learnerGraph', {
 
     $scope.draw = function() {
       chart.showLoading();
-      $http.get('http://localhost:3000/courses/' + $routeParams.course_code +
+      $http.get(API_BASE_URL+'courses/' + $routeParams.course_code +
         '/run/' + $routeParams.run + '/learner_network?top=' + $scope.top).then(function(response) {
 
 
@@ -142,7 +142,7 @@ component('learnerGraph', {
     $scope.draw();
 
 
-    $http.get('http://localhost:3000/courses/' + $routeParams.course_code +
+    $http.get(API_BASE_URL+'courses/' + $routeParams.course_code +
       '/run/' + $routeParams.run + '/learner_network_metrics').then(function(response) {
 
       var d = []

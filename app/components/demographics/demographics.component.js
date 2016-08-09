@@ -4,11 +4,11 @@ angular.
 module('demographics').
 component('demographics', {
   templateUrl: 'components/demographics/demographics.template.html',
-  controller: function demographicsController($http, $routeParams, $scope) {
+  controller: function demographicsController($http, $routeParams, $scope,API_BASE_URL) {
 
     // map for chart resize
     var charts = {};
-    $http.get('http://localhost:3000/courses/' +
+    $http.get(API_BASE_URL+'courses/' +
       $routeParams.course_code + '/run/' + $routeParams.run + '/demographics').then(function(response) {
 
       var data = response.data;

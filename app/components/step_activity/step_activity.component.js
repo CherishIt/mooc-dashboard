@@ -4,7 +4,7 @@ angular.
   module('stepActivity').
   component('stepActivity', {
     templateUrl: 'components/step_activity/step_activity.template.html',
-    controller: function stepStartedController($http, $scope, $routeParams) {
+    controller: function stepStartedController($http, $scope, $routeParams,API_BASE_URL) {
       var ctrl = this;
       //google.charts.setOnLoadCallback(drawChart);
 
@@ -12,9 +12,9 @@ angular.
 
         var charts = {}
 
-        $http.get('http://localhost:3000/courses/' + $routeParams.course_code + '/run/' + $routeParams.run + '/step_activity').then(function(response) {
+        $http.get(API_BASE_URL+'courses/' + $routeParams.course_code + '/run/' + $routeParams.run + '/step_activity').then(function(response) {
           //self.enrolmentData = response.data;
-          console.log('http://localhost:3000/courses/' + ctrl.course_code + '/run/' + ctrl.run + '/step_activity')
+          console.log(API_BASE_URL+'courses/' + ctrl.course_code + '/run/' + ctrl.run + '/step_activity')
           var data = response.data;
 
           var chart_step_activity = echarts.init(document.getElementById('step_activity'));

@@ -4,7 +4,7 @@ angular.
 module('comment').
 component('replyProportionPie', {
   templateUrl: 'components/comment/reply_proportion/reply_proportion.template.html',
-  controller: function commentNetworkController($http, $scope, $routeParams) {
+  controller: function commentNetworkController($http, $scope, $routeParams, API_BASE_URL) {
     //var self = this;
 
     var charts = {};
@@ -22,7 +22,7 @@ component('replyProportionPie', {
     // $scope.unlinkedNum = 0;
     // $scope.linkedNum = 0;
 
-    $http.get('http://localhost:3000/courses/' + $routeParams.course_code +
+    $http.get(API_BASE_URL+'courses/' + $routeParams.course_code +
       '/run/' + $routeParams.run + '/comment_dist').then(function(response) {
 
       results = response.data;

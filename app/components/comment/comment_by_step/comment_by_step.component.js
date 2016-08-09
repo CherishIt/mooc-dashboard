@@ -4,11 +4,11 @@ angular.
 module('comment').
 component('commentByStep', {
   templateUrl: 'components/comment/comment_by_step/comment_by_step.template.html',
-  controller: function stepStartedController($http, $routeParams, $scope) {
+  controller: function stepStartedController($http, $routeParams, $scope, API_BASE_URL) {
     //var self = this;
 
     var charts = {};
-    $http.get('http://localhost:3000/courses/' +
+    $http.get(API_BASE_URL+'courses/' +
       $routeParams.course_code + '/run/' + $routeParams.run + '/comment').then(function(response) {
 
       var data = response.data;

@@ -4,7 +4,7 @@ angular.
   module('comment').
   component('commentGraph', {
     templateUrl: 'components/social_network/comment_graph/comment_graph.template.html',
-    controller: function commentNetworkController($http, $scope, $routeParams) {
+    controller: function commentNetworkController($http, $scope, $routeParams,API_BASE_URL) {
       //var self = this;
 
       var charts = {}
@@ -55,7 +55,7 @@ angular.
 
 
       //http get data source
-      $http.get('http://localhost:3000/courses/' + $routeParams.course_code 
+      $http.get(API_BASE_URL+'courses/' + $routeParams.course_code 
         + '/run/' + $routeParams.run + '/comment_network').then(function(response) {
 
         results = response.data;

@@ -4,7 +4,7 @@ angular.
 module('sentiment_analysis').
 component('sentimentAnalysis', {
   templateUrl: 'components/sentiment_analysis/sentiment_analysis.template.html',
-  controller: function sentimentAnalysisController($http, $routeParams, $scope) {
+  controller: function sentimentAnalysisController($http, $routeParams, $scope,API_BASE_URL) {
 
     $scope.by = 'step';
     $scope.keyword = '';
@@ -50,7 +50,7 @@ component('sentimentAnalysis', {
       chart_neg_wordcloud.showLoading();
       $scope.negFilter = 'All';
       $scope.posFilter = 'All';
-      var url = 'http://localhost:3000/courses/' +
+      var url = API_BASE_URL+'courses/' +
       $routeParams.course_code + '/run/' + $routeParams.run + '/sentiment_analysis?by=' + by;
       if (keyword)
         url += '&keyword=' + keyword;

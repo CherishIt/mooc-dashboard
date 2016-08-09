@@ -4,9 +4,9 @@ angular.
   module('course_info').
   component('courseInfo', {
     templateUrl: 'components/course_info/course_info.template.html',
-    controller: function coursesController($http, $scope, $routeParams) {
+    controller: function coursesController($http, $scope, $routeParams,API_BASE_URL) {
       var self = this;
-      $http.get('http://localhost:3000/courses/' + $routeParams.course_code).then(function(response) {
+      $http.get(API_BASE_URL+'courses/' + $routeParams.course_code).then(function(response) {
 
         $scope.stats = response.data;
         $scope.stats.overview = {};
