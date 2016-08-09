@@ -1,9 +1,9 @@
 'use strict';
 
 angular.
-module('word_analysis').
-component('wordAnalysis', {
-  templateUrl: 'components/word_analysis/word_analysis.template.html',
+module('word_cloud').
+component('wordCloud', {
+  templateUrl: 'components/word_cloud/word_cloud.template.html',
   controller: function wordAnalysisController($http, $routeParams, $scope) {
 
     //for resize chart
